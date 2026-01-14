@@ -2,6 +2,118 @@
 
 模块化的 Claude Code 命令系统，提供项目管理、工作流程、代码验证、Bug修复等完整开发工具链。
 
+## 安装
+
+命令系统需要安装到 Claude Code 可以识别的目录。Claude Code 会按以下顺序搜索命令文件:
+
+1. 项目级目录: `<项目根目录>/.agents/commands/`
+2. 全局配置目录: `~/.claude/commands/` (Windows: `%USERPROFILE%\.claude\commands\`)
+
+### 全局安装（推荐）
+
+全局安装后，所有项目都可以使用这些命令。
+
+Windows:
+```bash
+# 克隆或下载本仓库后，在仓库目录执行
+xcopy /E /I /Y . "%USERPROFILE%\.claude\commands"
+```
+
+macOS/Linux:
+```bash
+# 克隆或下载本仓库后，在仓库目录执行
+mkdir -p ~/.claude/commands
+cp -r . ~/.claude/commands/
+```
+
+### 项目级安装
+
+项目级安装只在当前项目生效，适合项目特定的自定义命令。
+
+```bash
+# 在项目根目录执行
+mkdir -p .agents/commands
+cp -r /path/to/this/repo/* .agents/commands/
+```
+
+### 验证安装
+
+安装完成后，在 Claude Code 中运行:
+```bash
+/COMMANDS
+```
+
+如果看到完整的命令列表，说明安装成功。
+
+### 更新
+
+更新到最新版本:
+
+```bash
+# 在本仓库目录执行 git pull 后
+# Windows:
+xcopy /E /I /Y . "%USERPROFILE%\.claude\commands"
+
+# macOS/Linux:
+cp -r . ~/.claude/commands/
+```
+
+### 卸载
+
+删除命令文件:
+
+Windows:
+```bash
+rmdir /S /Q "%USERPROFILE%\.claude\commands"
+```
+
+macOS/Linux:
+```bash
+rm -rf ~/.claude/commands
+```
+
+### 注意事项
+
+- 安装目录必须包含完整的目录结构，不能只复制单个命令文件
+- 项目级命令优先级高于全局命令，会覆盖同名全局命令
+- 修改命令文件后，Claude Code 会自动重新加载，无需重启
+- 建议定期更新到最新版本以获得新功能和修复
+
+### 目录结构
+
+安装后的目录结构:
+```
+~/.claude/commands/          # 或 .agents/commands/
+├── axiom/                   # AxiomOS 架构认知引擎
+├── bugfix/                  # Bug 修复流程
+├── docs/                    # 文档生成
+├── git/                     # Git 操作
+├── project/                 # 项目管理
+├── utils/                   # 工具集
+├── validation/              # 代码验证
+├── workflow/                # 工作流程
+├── _meta/                   # 元数据和架构文档
+├── COMMANDS.md             # 命令索引
+└── README.md               # 本文档
+```
+
+### 故障排查
+
+**问题: 运行 /COMMANDS 提示命令不存在**
+- 检查安装路径是否正确
+- 确认使用的是 `~/.claude/commands/` 或 `.agents/commands/`
+- 验证目录结构完整，包含所有子目录
+
+**问题: 命令列表不完整**
+- 检查是否只复制了部分文件
+- 重新执行完整的安装命令
+- 确认没有权限问题（Windows 可能需要管理员权限）
+
+**问题: 修改命令后不生效**
+- Claude Code 应该自动重新加载
+- 如果未生效，尝试重启 Claude Code
+- 检查修改的文件路径是否正确
+
 ## 快速开始
 
 查看所有可用命令:

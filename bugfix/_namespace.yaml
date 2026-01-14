@@ -1,0 +1,39 @@
+namespace: bugfix
+version: "2.0.0"
+name: "Bug修复"
+description: "系统化的Bug分析和修复流程"
+icon: "🐛"
+
+# 命名空间级别的配置
+config:
+  output_dir: "docs/rca"
+  rca_template: "standard"
+
+# 依赖的其他命名空间
+dependencies:
+  - git
+  - validation
+
+# 命令列表
+commands:
+  rca:
+    file: "rca.md"
+    description: "为GitHub问题创建根因分析文档"
+    arguments:
+      - name: github-issue-id
+        type: string
+        required: true
+        description: "GitHub问题编号"
+    output-type: "file"
+    output-path: "docs/rca/issue-{issue-id}.md"
+
+  implement:
+    file: "implement.md"
+    description: "基于RCA文档实施修复"
+    arguments:
+      - name: github-issue-id
+        type: string
+        required: true
+        description: "GitHub问题编号"
+    output-type: "terminal"
+    dependencies: ["bugfix:rca"]

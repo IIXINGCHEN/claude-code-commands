@@ -1,0 +1,48 @@
+namespace: git
+version: "2.0.0"
+name: "Git操作"
+description: "Git版本控制和协作"
+icon: "📦"
+
+# 命名空间级别的配置
+config:
+  co_author: "Claude Sonnet 4.5 (1M context) <noreply@anthropic.com>"
+
+# 依赖的其他命名空间
+dependencies: []
+
+# 命令列表
+commands:
+  commit:
+    file: "commit.md"
+    description: "创建规范化的Git提交"
+    arguments: []
+    output-type: "terminal"
+
+  push:
+    file: "push.md"
+    description: "推送提交到远程仓库"
+    arguments:
+      - name: remote
+        type: string
+        required: false
+        description: "远程仓库名称"
+        default: "origin"
+      - name: branch
+        type: string
+        required: false
+        description: "分支名称"
+        default: "current"
+    output-type: "terminal"
+
+  pr:
+    file: "pr.md"
+    description: "创建GitHub Pull Request"
+    arguments:
+      - name: base-branch
+        type: string
+        required: false
+        description: "目标分支"
+        default: "main"
+    output-type: "terminal"
+    requires: ["gh"]

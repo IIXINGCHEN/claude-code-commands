@@ -1,0 +1,45 @@
+namespace: workflow
+version: "2.0.0"
+name: "工作流程"
+description: "完整的开发工作流：规划、执行、报告"
+icon: "🔄"
+
+# 命名空间级别的配置
+config:
+  output_dir: ".agents"
+  plans_dir: ".agents/plans"
+  default_format: "markdown"
+
+# 依赖的其他命名空间
+dependencies:
+  - git
+  - validation
+
+# 命令列表
+commands:
+  prime:
+    file: "prime.md"
+    description: "加载项目上下文和代码库理解"
+    arguments: []
+    output-type: "terminal"
+
+  plan:
+    file: "plan.md"
+    description: "制定功能实施计划"
+    arguments:
+      - name: feature-name
+        type: string
+        required: true
+        description: "功能名称（kebab-case格式）"
+    output-type: "file"
+    output-path: ".agents/plans/{feature-name}.md"
+
+  execute:
+    file: "execute.md"
+    description: "执行实施计划"
+    arguments:
+      - name: plan-path
+        type: file
+        required: true
+        description: "计划文件路径"
+    output-type: "terminal"

@@ -1,0 +1,82 @@
+version: "1.0.0"
+description: "命令文件的标准格式规范"
+
+# Frontmatter 必需字段
+required_frontmatter:
+  - description           # 简短描述（一行）
+
+# Frontmatter 可选字段
+optional_frontmatter:
+  - argument-hint        # 参数提示
+  - version              # 命令版本
+  - author               # 作者
+  - tags                 # 标签列表
+  - dependencies         # 依赖的其他命令
+  - output-type          # 输出类型：terminal|file|both
+  - requires             # 必需的工具或环境
+
+# 推荐的文档结构
+recommended_sections:
+  - name: "Overview"
+    description: "命令概述和用途说明"
+    required: true
+
+  - name: "Input"
+    description: "输入参数说明"
+    required: false
+    subsections:
+      - "Required Arguments"
+      - "Optional Arguments"
+      - "Environment Requirements"
+
+  - name: "Process"
+    description: "执行过程步骤"
+    required: true
+
+  - name: "Output"
+    description: "输出说明"
+    required: true
+    subsections:
+      - "Output Format"
+      - "Output Location"
+      - "Output Structure"
+
+  - name: "Examples"
+    description: "使用示例"
+    required: true
+
+  - name: "Notes"
+    description: "注意事项"
+    required: false
+    subsections:
+      - "Prerequisites"
+      - "Best Practices"
+      - "Common Issues"
+
+  - name: "Related Commands"
+    description: "相关命令"
+    required: false
+
+# 文件命名规范
+naming_convention:
+  pattern: "^[a-z][a-z0-9-]*\\.md$"
+  description: "使用小写字母和连字符，以 .md 结尾"
+  examples:
+    - "prime.md"
+    - "code-review.md"
+    - "create-prd.md"
+    - "system-review.md"
+
+# 命名空间配置文件规范
+namespace_config:
+  filename: "_namespace.yaml"
+  required_fields:
+    - namespace          # 命名空间标识符
+    - name               # 显示名称
+    - description        # 描述
+    - commands           # 命令列表
+  optional_fields:
+    - version            # 版本号
+    - icon               # 图标
+    - config             # 配置项
+    - dependencies       # 依赖的其他命名空间

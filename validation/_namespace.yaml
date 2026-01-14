@@ -1,0 +1,81 @@
+namespace: validation
+version: "2.0.0"
+name: "验证审查"
+description: "代码验证、审查和质量保证"
+icon: "✅"
+
+# 命名空间级别的配置
+config:
+  output_dir: ".agents"
+  validation_dir: ".agents/validation"
+  code_reviews_dir: ".agents/code-reviews"
+  execution_reports_dir: ".agents/execution-reports"
+  system_reviews_dir: ".agents/system-reviews"
+
+# 依赖的其他命名空间
+dependencies:
+  - git
+
+# 命令列表
+commands:
+  validate:
+    file: "validate.md"
+    description: "进行全面验证：测试、lint、覆盖、前端构建"
+    arguments:
+      - name: project-path
+        type: path
+        required: false
+        description: "项目路径（默认当前目录）"
+        default: "."
+    output-type: "file"
+    output-path: ".agents/validation/{project-name}.md"
+
+  code-review:
+    file: "code-review.md"
+    description: "对更改文件进行技术代码审查"
+    arguments: []
+    output-type: "file"
+    output-path: ".agents/code-reviews/{timestamp}.md"
+
+  code-review-pro:
+    file: "code-review-pro.md"
+    description: "执行结构化代码审查（可选自动修复）"
+    arguments: []
+    output-type: "file"
+    output-path: ".agents/code-reviews/{timestamp}-pro.md"
+
+  code-review-fix:
+    file: "code-review-fix.md"
+    description: "修复代码审查中发现的问题"
+    arguments:
+      - name: review-file
+        type: file
+        required: true
+        description: "审查结果文件路径"
+      - name: scope
+        type: string
+        required: false
+        description: "修复范围（如 critical-only）"
+    output-type: "terminal"
+
+  execution-report:
+    file: "execution-report.md"
+    description: "实现功能后生成报告"
+    arguments: []
+    output-type: "file"
+    output-path: ".agents/execution-reports/{feature-name}.md"
+
+  system-review:
+    file: "system-review.md"
+    description: "分析流程改进的实施与计划"
+    arguments:
+      - name: plan-file
+        type: file
+        required: true
+        description: "计划文件路径"
+      - name: execution-report-file
+        type: file
+        required: true
+        description: "执行报告路径"
+    output-type: "file"
+    output-path: ".agents/system-reviews/{feature-name}-review.md"

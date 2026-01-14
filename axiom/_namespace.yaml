@@ -1,0 +1,113 @@
+namespace: axiom
+version: "20.0.0"
+name: "AxiomOS系统"
+description: "高级领域架构认知引擎 - 完全模块化架构"
+icon: "🤖"
+
+# 命名空间级别的配置
+config:
+  system_name: "AxiomOS"
+  system_version: "20.0"
+  module_base: "axiom"
+  architecture: "modular"
+  total_modules: 27
+
+# 模块结构
+modules:
+  config:
+    count: 3
+    files: ["system.md", "security.md", "compliance.md"]
+
+  foundation:
+    count: 3
+    files: ["role.md", "principles.md", "context.md"]
+
+  standards:
+    count: 2
+    files: ["deliverable.md", "artifact.md"]
+
+  modes:
+    count: 11
+    files:
+      - "_overview.md"
+      - "triage.md"
+      - "sfam.md"
+      - "sdm.md"
+      - "audit.md"
+      - "security.md"
+      - "debug.md"
+      - "review.md"
+      - "onboarding.md"
+      - "micro-task.md"
+      - "enhancement.md"
+
+  cognitive:
+    count: 2
+    files: ["session.md", "ultrathink.md"]
+
+  protocols:
+    count: 2
+    files: ["interaction.md", "tools.md"]
+
+  commands:
+    count: 4
+    files: ["view.md", "activate.md", "status.md", "load-all.md"]
+
+# 依赖的其他命名空间
+dependencies: []
+
+# 命令列表
+commands:
+  view:
+    file: "commands/view.md"
+    description: "查看特定模块的内容"
+    arguments:
+      - name: module-path
+        type: string
+        required: true
+        description: "模块路径（如 config/system, modes/sdm）"
+        examples:
+          - "config/system"
+          - "foundation/principles"
+          - "modes/sdm"
+          - "cognitive/ultrathink"
+    output-type: "terminal"
+
+  activate:
+    file: "commands/activate.md"
+    description: "激活特定操作模式"
+    arguments:
+      - name: mode-name
+        type: string
+        required: true
+        description: "模式名称"
+        options:
+          - "sdm"
+          - "sfam"
+          - "audit"
+          - "debug"
+          - "review"
+          - "security"
+          - "micro-task"
+          - "onboarding"
+    output-type: "terminal"
+
+  status:
+    file: "commands/status.md"
+    description: "查看 AxiomOS 系统状态"
+    arguments: []
+    output-type: "terminal"
+
+  load-all:
+    file: "commands/load-all.md"
+    description: "加载完整的 AxiomOS 系统"
+    arguments: []
+    output-type: "terminal"
+
+# 快速访问路径
+shortcuts:
+  principles: "foundation/principles.md"
+  sdm: "modes/sdm.md"
+  standards: "standards/deliverable.md"
+  security: "config/security.md"
+  ultrathink: "cognitive/ultrathink.md"

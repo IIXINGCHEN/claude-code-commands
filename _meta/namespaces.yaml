@@ -1,0 +1,91 @@
+version: "1.0.0"
+last_updated: "2024-01-12"
+description: "Claude Code Commands 命名空间注册表"
+
+# 命名空间定义
+namespaces:
+  project:
+    name: "项目管理"
+    description: "项目初始化、设置和分析"
+    icon: "🏗️"
+    priority: 1
+    commands:
+      - init
+      - analyze
+
+  workflow:
+    name: "工作流程"
+    description: "完整的开发工作流：规划、执行、报告"
+    icon: "🔄"
+    priority: 2
+    commands:
+      - prime
+      - plan
+      - execute
+
+  validation:
+    name: "验证审查"
+    description: "代码验证、审查和质量保证"
+    icon: "✅"
+    priority: 3
+    commands:
+      - validate
+      - code-review
+      - code-review-pro
+      - code-review-fix
+      - execution-report
+      - system-review
+
+  bugfix:
+    name: "Bug修复"
+    description: "系统化的Bug分析和修复流程"
+    icon: "🐛"
+    priority: 4
+    commands:
+      - rca
+      - implement
+
+  git:
+    name: "Git操作"
+    description: "Git版本控制和协作"
+    icon: "📦"
+    priority: 5
+    commands:
+      - commit
+      - push
+      - pr
+
+  docs:
+    name: "文档生成"
+    description: "自动生成各类项目文档"
+    icon: "📚"
+    priority: 6
+    commands:
+      - create-prd
+      - compress-context
+
+  utils:
+    name: "实用工具"
+    description: "各种辅助工具和实用功能"
+    icon: "🔧"
+    priority: 7
+    commands:
+      - analyze-codebase
+      - export-session
+
+  axiom:
+    name: "AxiomOS系统"
+    description: "高级领域架构认知引擎 - 完全模块化架构"
+    icon: "🤖"
+    priority: 0
+    commands:
+      - view
+      - activate
+      - status
+      - load-all
+
+# 全局配置
+global_config:
+  output_base_dir: ".agents"
+  default_format: "markdown"
+  enable_validation: true

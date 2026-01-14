@@ -1,0 +1,37 @@
+namespace: project
+version: "2.0.0"
+name: "项目管理"
+description: "项目初始化、设置和分析"
+icon: "🏗️"
+
+# 命名空间级别的配置
+config:
+  output_dir: ".agents/init"
+
+# 依赖的其他命名空间
+dependencies: []
+
+# 命令列表
+commands:
+  init:
+    file: "init.md"
+    description: "安装依赖，启动开发服务器"
+    arguments:
+      - name: project-path
+        type: path
+        required: false
+        description: "项目路径（默认当前目录）"
+        default: "."
+    output-type: "file"
+    output-path: ".agents/init/{project-name}.md"
+
+  analyze:
+    file: "analyze.md"
+    description: "分析项目结构和技术栈"
+    arguments:
+      - name: project-path
+        type: path
+        required: false
+        description: "项目路径（默认当前目录）"
+        default: "."
+    output-type: "terminal"

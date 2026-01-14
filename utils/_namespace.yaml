@@ -1,0 +1,37 @@
+namespace: utils
+version: "2.0.0"
+name: "实用工具"
+description: "各种辅助工具和实用功能"
+icon: "🔧"
+
+# 命名空间级别的配置
+config:
+  output_dir: ".agents/utils"
+
+# 依赖的其他命名空间
+dependencies: []
+
+# 命令列表
+commands:
+  analyze-codebase:
+    file: "analyze-codebase.md"
+    description: "深度分析代码库结构和模式"
+    arguments:
+      - name: focus
+        type: string
+        required: false
+        description: "分析焦点（architecture|patterns|dependencies|all）"
+        default: "all"
+    output-type: "terminal"
+
+  export-session:
+    file: "export-session.md"
+    description: "导出当前会话信息"
+    arguments:
+      - name: format
+        type: string
+        required: false
+        description: "导出格式（markdown|json）"
+        default: "markdown"
+    output-type: "file"
+    output-path: ".agents/utils/session-{timestamp}.{format}"

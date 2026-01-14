@@ -1,0 +1,38 @@
+namespace: docs
+version: "2.0.0"
+name: "文档生成"
+description: "自动生成各类项目文档"
+icon: "📚"
+
+# 命名空间级别的配置
+config:
+  output_dir: "."
+  context_summaries_dir: ".agents/context-summaries"
+
+# 依赖的其他命名空间
+dependencies: []
+
+# 命令列表
+commands:
+  create-prd:
+    file: "create-prd.md"
+    description: "从对话中生成产品需求文档"
+    arguments:
+      - name: output-filename
+        type: string
+        required: false
+        description: "输出文件名"
+        default: "PRD.md"
+    output-type: "file"
+
+  compress-context:
+    file: "compress-context.md"
+    description: "生成对话摘要用于上下文压缩"
+    arguments:
+      - name: output-filename
+        type: string
+        required: false
+        description: "输出文件名"
+        default: "context-summary.md"
+    output-type: "file"
+    output-path: ".agents/context-summaries/{filename}"

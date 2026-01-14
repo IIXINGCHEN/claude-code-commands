@@ -1,0 +1,34 @@
+namespace: namespace-name
+version: "1.0.0"
+name: "命名空间显示名称"
+description: "命名空间的详细描述"
+icon: "📦"
+
+# 命名空间级别的配置
+config:
+  output_dir: ".agents/{namespace-name}"
+  default_format: "markdown"
+
+# 依赖的其他命名空间
+dependencies: []
+
+# 命令列表
+commands:
+  command-name:
+    file: "command-name.md"
+    description: "命令的简短描述"
+
+    # 命令参数定义
+    arguments:
+      - name: arg-name
+        type: string          # string|number|boolean|file|path
+        required: true
+        description: "参数描述"
+        default: null
+
+    # 命令选项定义
+    options:
+      - name: "--flag"
+        type: boolean
+        description: "选项描述"
+        default: false
